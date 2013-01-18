@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		3DA8423816A9DF8D0021E754 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA8423716A9DF8D0021E754 /* Cocoa.framework */; };
-		3DA8424216A9DF8D0021E754 /* FunctionalCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8424116A9DF8D0021E754 /* FunctionalCategories.m */; };
 		3DA8424A16A9DF8D0021E754 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA8424916A9DF8D0021E754 /* SenTestingKit.framework */; };
 		3DA8424B16A9DF8D0021E754 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA8423716A9DF8D0021E754 /* Cocoa.framework */; };
 		3DA8424E16A9DF8D0021E754 /* libFunctionalCategories.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DA8423416A9DF8D0021E754 /* libFunctionalCategories.a */; };
 		3DA8425416A9DF8D0021E754 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DA8425216A9DF8D0021E754 /* InfoPlist.strings */; };
 		3DA8425716A9DF8D0021E754 /* FunctionalCategoriesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8425616A9DF8D0021E754 /* FunctionalCategoriesTests.m */; };
+		3DA8426216A9DFA60021E754 /* NSArray+FunctionalArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA8426016A9DFA60021E754 /* NSArray+FunctionalArray.h */; };
+		3DA8426316A9DFA60021E754 /* NSArray+FunctionalArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8426116A9DFA60021E754 /* NSArray+FunctionalArray.m */; };
+		3DA8426616A9E2360021E754 /* DummyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8426516A9E2360021E754 /* DummyClass.m */; };
+		3DA8426716A9E4BD0021E754 /* NSArray+FunctionalArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8426116A9DFA60021E754 /* NSArray+FunctionalArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,13 +37,16 @@
 		3DA8423C16A9DF8D0021E754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3DA8423F16A9DF8D0021E754 /* FunctionalCategories-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FunctionalCategories-Prefix.pch"; sourceTree = "<group>"; };
 		3DA8424016A9DF8D0021E754 /* FunctionalCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FunctionalCategories.h; sourceTree = "<group>"; };
-		3DA8424116A9DF8D0021E754 /* FunctionalCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunctionalCategories.m; sourceTree = "<group>"; };
 		3DA8424816A9DF8D0021E754 /* FunctionalCategoriesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunctionalCategoriesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA8424916A9DF8D0021E754 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3DA8425116A9DF8D0021E754 /* FunctionalCategoriesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FunctionalCategoriesTests-Info.plist"; sourceTree = "<group>"; };
 		3DA8425316A9DF8D0021E754 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DA8425516A9DF8D0021E754 /* FunctionalCategoriesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FunctionalCategoriesTests.h; sourceTree = "<group>"; };
 		3DA8425616A9DF8D0021E754 /* FunctionalCategoriesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunctionalCategoriesTests.m; sourceTree = "<group>"; };
+		3DA8426016A9DFA60021E754 /* NSArray+FunctionalArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FunctionalArray.h"; sourceTree = "<group>"; };
+		3DA8426116A9DFA60021E754 /* NSArray+FunctionalArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FunctionalArray.m"; sourceTree = "<group>"; };
+		3DA8426416A9E2360021E754 /* DummyClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyClass.h; sourceTree = "<group>"; };
+		3DA8426516A9E2360021E754 /* DummyClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyClass.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				3DA8424016A9DF8D0021E754 /* FunctionalCategories.h */,
-				3DA8424116A9DF8D0021E754 /* FunctionalCategories.m */,
+				3DA8426016A9DFA60021E754 /* NSArray+FunctionalArray.h */,
+				3DA8426116A9DFA60021E754 /* NSArray+FunctionalArray.m */,
 				3DA8423E16A9DF8D0021E754 /* Supporting Files */,
 			);
 			path = FunctionalCategories;
@@ -125,6 +132,8 @@
 		3DA8424F16A9DF8D0021E754 /* FunctionalCategoriesTests */ = {
 			isa = PBXGroup;
 			children = (
+				3DA8426416A9E2360021E754 /* DummyClass.h */,
+				3DA8426516A9E2360021E754 /* DummyClass.m */,
 				3DA8425516A9DF8D0021E754 /* FunctionalCategoriesTests.h */,
 				3DA8425616A9DF8D0021E754 /* FunctionalCategoriesTests.m */,
 				3DA8425016A9DF8D0021E754 /* Supporting Files */,
@@ -148,6 +157,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DA8426216A9DFA60021E754 /* NSArray+FunctionalArray.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DA8424216A9DF8D0021E754 /* FunctionalCategories.m in Sources */,
+				3DA8426316A9DFA60021E754 /* NSArray+FunctionalArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DA8425716A9DF8D0021E754 /* FunctionalCategoriesTests.m in Sources */,
+				3DA8426616A9E2360021E754 /* DummyClass.m in Sources */,
+				3DA8426716A9E4BD0021E754 /* NSArray+FunctionalArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

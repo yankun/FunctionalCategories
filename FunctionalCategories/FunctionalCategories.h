@@ -6,8 +6,4 @@
 //  Copyright (c) 2013 Jan-Peter Zurek. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface FunctionalCategories : NSObject
-
-@end
+#import "NSArray+FunctionalArray.h"
