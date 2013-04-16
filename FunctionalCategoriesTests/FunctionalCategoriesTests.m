@@ -24,8 +24,7 @@
                                                lastName:@"Schlemmermayer"
                                                  andAge:45];
     
-    self.testArray = [NSArray arrayWithObjects:self.testObject1,
-                      self.testObject2, nil];
+    self.testArray = @[self.testObject1, self.testObject2];
 }
 
 - (void)tearDown
@@ -75,15 +74,25 @@
     NSString *resultString1 = [mapArray objectAtIndex:0];
     NSString *resultString2 = [mapArray objectAtIndex:1];
     
-    NSMutableArray *a = [[NSMutableArray alloc] init];
-    
     STAssertEqualObjects(resultString1, @"Mr. Max", @"First element should equal Mr. Max");
     STAssertEqualObjects(resultString2, @"Mr. Franz", @"First element should equal Mr. Franz");
 }
 
 - (void)testCount
 {
+    int count = [self.testArray countWithCondition:^Boolean(DummyClass *object) {
+        return [object.firstName compare:@"Max"] == 0;
+    }];
     
+    STAssertTrue(count == 1, @"Count should be only 1");
+}
+
+- (void)testFirstOrNil
+{    
+    DummyClass *d = [self.testArray firstOrNil];
+    
+    STAssertEqualObjects(d, [self.testArray objectAtIndex:0],
+                         @"Returned object should be the first element of the array");
 }
 
 @end

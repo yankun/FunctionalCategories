@@ -8,6 +8,9 @@
 
 #import "NSArray+FunctionalArray.h"
 
+NSString *const SCFunctionalCategoryErrorDomain = @"SCFunctionlCategoryError";
+int const SCFunctionalCategoryNoSingleElementError = 0;
+
 @implementation NSArray (FunctionalArray)
 
 - (void)foreach:(foreach_block_t)block
@@ -138,7 +141,7 @@
     return result;
 }
 
-- (NSArray *)map:(mapping_block_t)block
+- (NSArray *)map:(returning_block_t)block
 {
     NSMutableArray *array = [NSMutableArray array];
     
@@ -154,7 +157,7 @@
     return [NSMutableArray arrayWithArray:self];
 }
 
-- (NSArray *)select:(selection_block_t)block
+- (NSArray *)select:(returning_block_t)block
 {
     NSMutableArray *array = [NSMutableArray array];
     

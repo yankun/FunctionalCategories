@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *SCFunctionalCategoryErrorDomain = @"SCFunctionalCategories";
-static int SCFunctionalCategoryNoSingleElementError = 0;
+NSString *const SCFunctionalCategoryErrorDomain;
+int const SCFunctionalCategoryNoSingleElementError;
 
 typedef void (^foreach_block_t)(id object);
 typedef Boolean (^condition_block_t)(id object);
-typedef id (^mapping_block_t)(id object);
-typedef id (^selection_block_t)(id object);
+typedef id (^returning_block_t)(id object);
 
 @interface NSArray (FunctionalArray)
 
@@ -27,10 +26,10 @@ typedef id (^selection_block_t)(id object);
 - (id)firstOrNilWithCondition:(condition_block_t)block;
 - (id)singleOrNil:(NSError **)error;
 - (id)singleOrNilWithCondition:(condition_block_t)block Error:(NSError **)error;
-- (NSArray *)map:(mapping_block_t) block;
+- (NSArray *)map:(returning_block_t) block;
 - (id) findLast:(condition_block_t) block;
 - (NSMutableArray *)toMutableArray;
-- (NSArray *)select:(selection_block_t)block;
+- (NSArray *)select:(returning_block_t)block;
 - (int)countWithCondition:(condition_block_t)block;
 
 @end
