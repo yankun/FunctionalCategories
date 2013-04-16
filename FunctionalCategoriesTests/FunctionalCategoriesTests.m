@@ -16,7 +16,16 @@
 {
     [super setUp];
     
-    // Set-up code here.
+    self.testObject1 = [[DummyClass alloc] initWithName:@"Max"
+                                               lastName:@"Mustermann"
+                                                 andAge:32];
+    
+    self.testObject2 = [[DummyClass alloc] initWithName:@"Franz"
+                                               lastName:@"Schlemmermayer"
+                                                 andAge:45];
+    
+    self.testArray = [NSArray arrayWithObjects:self.testObject1,
+                      self.testObject2, nil];
 }
 
 - (void)tearDown
@@ -28,24 +37,53 @@
 
 - (void)testSelect
 {
-    DummyClass *d1 = [[DummyClass alloc] init];
-    d1.firstName = @"Max";
-    d1.lastName = @"Mustermann";
-    d1.age = 32;
-    
-    DummyClass *d2 = [[DummyClass alloc] init];
-    d2.firstName = @"Franz";
-    d2.lastName = @"Schlemmermayer";
-    d2.age = 45;
-    
-    NSArray *array = [NSArray arrayWithObjects:d1, d2, nil];
-    
-    NSArray *selectedArray = [array selectUsingBlock:^NSString *(DummyClass *object) {
+    NSArray *selectedArray =
+    [self.testArray select:^NSString *(DummyClass *object) {
         return object.firstName;
     }];
     
-    STAssertEquals([selectedArray objectAtIndex:0], d1.firstName, @"");
-    STAssertEquals([selectedArray objectAtIndex:1], d2.firstName, @"");
+    STAssertEqualObjects([selectedArray objectAtIndex:0],
+                         self.testObject1.firstName,
+                         @"First element in array should equal Max.");
+    
+    STAssertEqualObjects([selectedArray objectAtIndex:1],
+                         self.testObject2.firstName,
+                         @"Second element in array should equal Franz.");
+}
+
+- (void)testWhere
+{
+    NSArray *whereArray =
+    [self.testArray where:^Boolean(DummyClass *object) {
+        return [object.firstName isEqualToString:@"Max"];
+    }];
+    
+    STAssertTrue([whereArray count] == 1,
+                 @"Returned array should contain only one element.");
+    STAssertEqualObjects([whereArray objectAtIndex:0], self.testObject1,
+                         @"Object at index 0 should be Max Mustermann.");
+}
+
+- (void)testMap
+{
+    NSArray *mapArray = [self.testArray map:^NSString *(DummyClass *object) {
+        return [NSString stringWithFormat:@"%@ %@", @"Mr.", object.firstName];
+    }];
+    
+    STAssertTrue([mapArray count] == 2, @"Mapped array should contain two elements");
+    
+    NSString *resultString1 = [mapArray objectAtIndex:0];
+    NSString *resultString2 = [mapArray objectAtIndex:1];
+    
+    NSMutableArray *a = [[NSMutableArray alloc] init];
+    
+    STAssertEqualObjects(resultString1, @"Mr. Max", @"First element should equal Mr. Max");
+    STAssertEqualObjects(resultString2, @"Mr. Franz", @"First element should equal Mr. Franz");
+}
+
+- (void)testCount
+{
+    
 }
 
 @end

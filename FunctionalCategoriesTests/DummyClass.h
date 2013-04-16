@@ -14,4 +14,8 @@
 @property NSString *lastName;
 @property NSInteger age;
 
+- (id) initWithName:(NSString *)
+ firstName lastName:(NSString *)
+    lastName andAge:(int)age;
+
 @end

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *SCFunctionalCategoryErrorDomain = @"SCFunctionalCategories";
+static int SCFunctionalCategoryNoSingleElementError = 0;
+
 typedef void (^foreach_block_t)(id object);
 typedef Boolean (^condition_block_t)(id object);
 typedef id (^mapping_block_t)(id object);
@@ -15,16 +18,19 @@ typedef id (^selection_block_t)(id object);
 
 @interface NSArray (FunctionalArray)
 
-- (void)foreachWithBlock:(foreach_block_t) block;
-- (void)foreachParallelWithBlock:(foreach_block_t) block;
-- (Boolean)anyWithCondition:(condition_block_t) block;
-- (Boolean)manyWithCondition:(condition_block_t) block;
-- (NSArray *)whereWithCondition:(condition_block_t) block;
+- (void)foreach:(foreach_block_t) block;
+- (void)parallelForeach:(foreach_block_t) block;
+- (Boolean)any:(condition_block_t) block;
+- (Boolean)many:(condition_block_t) block;
+- (NSArray *)where:(condition_block_t) block;
 - (id)firstOrNil;
-- (NSArray *)mapUsingBlock:(mapping_block_t) block;
-- (id) findLastUsingCondition:(condition_block_t) block;
+- (id)firstOrNilWithCondition:(condition_block_t)block;
+- (id)singleOrNil:(NSError **)error;
+- (id)singleOrNilWithCondition:(condition_block_t)block Error:(NSError **)error;
+- (NSArray *)map:(mapping_block_t) block;
+- (id) findLast:(condition_block_t) block;
 - (NSMutableArray *)toMutableArray;
-- (NSArray *)selectUsingBlock:(selection_block_t)block;
-- (int)countUsingCondition:(condition_block_t)block;
+- (NSArray *)select:(selection_block_t)block;
+- (int)countWithCondition:(condition_block_t)block;
 
 @end

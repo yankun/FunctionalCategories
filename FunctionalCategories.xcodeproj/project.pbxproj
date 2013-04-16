@@ -206,7 +206,7 @@
 		3DA8422B16A9DF8D0021E754 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Jan-Peter Zurek";
 			};
 			buildConfigurationList = 3DA8422E16A9DF8D0021E754 /* Build configuration list for PBXProject "FunctionalCategories" */;
@@ -351,6 +351,7 @@
 		3DA8425B16A9DF8D0021E754 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FunctionalCategories/FunctionalCategories-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -360,6 +361,7 @@
 		3DA8425C16A9DF8D0021E754 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FunctionalCategories/FunctionalCategories-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,6 +413,7 @@
 				3DA8425C16A9DF8D0021E754 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3DA8425D16A9DF8D0021E754 /* Build configuration list for PBXNativeTarget "FunctionalCategoriesTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +422,7 @@
 				3DA8425F16A9DF8D0021E754 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

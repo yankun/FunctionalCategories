@@ -10,14 +10,14 @@
 
 @implementation NSArray (FunctionalArray)
 
-- (void)foreachWithBlock:(foreach_block_t)block
+- (void)foreach:(foreach_block_t)block
 {
     for (id obj in self) {
         block(obj);
     }
 }
 
-- (void)foreachParallelWithBlock:(foreach_block_t)block
+- (void)parallelForeach:(foreach_block_t)block
 {
     
     dispatch_queue_t parallelQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -32,7 +32,7 @@
     dispatch_semaphore_wait(waitForLoop, DISPATCH_TIME_FOREVER);
 }
 
-- (NSArray *)whereWithCondition:(condition_block_t)block
+- (NSArray *)where:(condition_block_t)block
 {
     NSMutableArray *array = [NSMutableArray array];
     
@@ -42,10 +42,10 @@
         }
     }
     
-    return array;
+    return [NSArray arrayWithArray:array];
 }
 
-- (Boolean)anyWithCondition:(condition_block_t)block
+- (Boolean)any:(condition_block_t)block
 {
     for (id obj in self) {
         if (block(obj)) {
@@ -56,7 +56,7 @@
     return false;
 }
 
-- (Boolean)manyWithCondition:(condition_block_t)block
+- (Boolean)many:(condition_block_t)block
 {
     int counter = 0;
     
@@ -81,7 +81,51 @@
     }
 }
 
-- (id)findLastUsingCondition:(condition_block_t)block
+- (id)firstOrNilWithCondition:(condition_block_t)block
+{
+    for (id obj in self) {
+        if (block(obj)) {
+            return obj;
+        }
+    }
+    
+    return nil;
+}
+
+- (id)singleOrNil:(NSError *__autoreleasing *)error
+{
+    return [self _singleOrNilInArray:self Error:error];
+}
+
+- (id)singleOrNilWithCondition:(condition_block_t)block
+                         Error:(NSError *__autoreleasing *)error
+{
+    NSArray *filterResult = [self where:block];
+    
+    return [self _singleOrNilInArray:filterResult Error:error];
+}
+
+- (id)_singleOrNilInArray:(NSArray *) array
+                    Error:(NSError *__autoreleasing *)error
+{
+    if (array.count > 1) {
+        if (error != NULL) {
+            NSString *errDescription = NSLocalizedString(@"singleOrNilError", @"");
+            NSDictionary *dict = @{ NSLocalizedDescriptionKey: errDescription };
+            
+            *error = [NSError errorWithDomain:SCFunctionalCategoryErrorDomain
+                                         code:SCFunctionalCategoryNoSingleElementError
+                                     userInfo:dict];
+        }
+        return nil;
+    } else if (array.count == 1){
+        return [array objectAtIndex:0];
+    } else {
+        return nil;
+    }
+}
+
+- (id)findLast:(condition_block_t)block
 {
     id result = nil;
     
@@ -94,7 +138,7 @@
     return result;
 }
 
-- (NSArray *)mapUsingBlock:(mapping_block_t)block
+- (NSArray *)map:(mapping_block_t)block
 {
     NSMutableArray *array = [NSMutableArray array];
     
@@ -102,21 +146,15 @@
         [array addObject:block(obj)];
     }
     
-    return array;
+    return [NSArray arrayWithArray:array];
 }
 
 - (NSMutableArray *)toMutableArray
-{
-    NSMutableArray *array = [NSMutableArray array];
-    
-    for (id obj in self) {
-        [array addObject:obj];
-    }
-    
-    return array;
+{    
+    return [NSMutableArray arrayWithArray:self];
 }
 
-- (NSArray *)selectUsingBlock:(selection_block_t)block
+- (NSArray *)select:(selection_block_t)block
 {
     NSMutableArray *array = [NSMutableArray array];
     
@@ -124,10 +162,10 @@
         [array addObject:block(obj)];
     }
     
-    return array;
+    return [NSArray arrayWithArray:array];
 }
 
-- (int)countUsingCondition:(condition_block_t)block
+- (int)countWithCondition:(condition_block_t)block
 {
     __block int count = 0;
     

@@ -8,6 +8,12 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+@class DummyClass;
+
 @interface FunctionalCategoriesTests : SenTestCase
+
+@property DummyClass *testObject1;
+@property DummyClass *testObject2;
+@property NSArray *testArray;
 
 @end

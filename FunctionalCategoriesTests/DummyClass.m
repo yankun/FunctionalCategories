@@ -10,4 +10,17 @@
 
 @implementation DummyClass
 
+- (id)initWithName:(NSString *)firstName
+          lastName:(NSString *)lastName
+            andAge:(int)age
+{
+    if (self = [super init]) {
+        self.firstName = firstName;
+        self.lastName = lastName;
+        self.age = age;
+    }
+    
+    return self;
+}
+
 @end
