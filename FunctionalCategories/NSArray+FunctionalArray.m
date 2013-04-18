@@ -22,17 +22,11 @@ int const SCFunctionalCategoryNoSingleElementError = 0;
 
 - (void)parallelForeach:(foreach_block_t)block
 {
-    
     dispatch_queue_t parallelQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    dispatch_semaphore_t waitForLoop = dispatch_semaphore_create(self.count - 1);
     
     dispatch_apply(self.count, parallelQueue, ^(size_t i) {
         block([self objectAtIndex:i]);
-        dispatch_semaphore_signal(waitForLoop);
     });
-    
-    dispatch_semaphore_wait(waitForLoop, DISPATCH_TIME_FOREVER);
 }
 
 - (NSArray *)where:(condition_block_t)block
@@ -174,18 +168,11 @@ int const SCFunctionalCategoryNoSingleElementError = 0;
     
     dispatch_queue_t parallelQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
-    dispatch_semaphore_t waitForLoop = dispatch_semaphore_create(self.count - 1);
-    
     dispatch_apply(self.count, parallelQueue, ^(size_t i) {
         if(block([self objectAtIndex:i])) {
-            @synchronized(self) {
-                count++;
-            }
+            count++;
         }
-        dispatch_semaphore_signal(waitForLoop);
     });
-    
-    dispatch_semaphore_wait(waitForLoop, DISPATCH_TIME_FOREVER);
     
     return count;
 }
